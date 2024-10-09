@@ -15,7 +15,7 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: getAllTodo(), // Ambil semua todo dari utilitas data
+      todos: getAllTodo(), // Mengambil semua todo dari utilitas data
     };
 
     this.onTodoFinished = this.onTodoFinished.bind(this);
@@ -23,20 +23,34 @@ class HomePage extends React.Component {
     this.onEditTitle = this.onEditTitle.bind(this);
   }
 
+  // Fungsi utilitas untuk memperbarui todo
+  updateTodo(id, updatedFields) {
+    const targetTodo = getTodo(id);
+    if (!targetTodo) {
+      console.error(`Todo with id ${id} not found`);
+      return;
+    }
+
+    editTodo({
+      id,
+      title: updatedFields.title || targetTodo.title, // Jika tidak ada perubahan, gunakan nilai sebelumnya
+      description: updatedFields.description || targetTodo.description,
+      is_finished: updatedFields.is_finished !== undefined ? updatedFields.is_finished : targetTodo.is_finished,
+    });
+
+    this.setState({
+      todos: getAllTodo(), // Memperbarui state setelah perubahan
+    });
+  }
+
   // Fungsi untuk menyimpan perubahan judul dan deskripsi
   onEditTitle(id, newTitle, newDescription) {
-    const targetTodo = getTodo(id);
-    if (targetTodo) {
-      editTodo({
-        id,
-        title: newTitle, // Simpan judul baru
-        description: newDescription, // Simpan deskripsi baru
-        is_finished: targetTodo.is_finished, // Status tetap
-      });
-      this.setState({
-        todos: getAllTodo(), // Perbarui state todos
-      });
-    }
+    this.updateTodo(id, { title: newTitle, description: newDescription });
+  }
+
+  // Fungsi untuk menyelesaikan todo
+  onTodoFinished(id, status) {
+    this.updateTodo(id, { is_finished: status });
   }
 
   // Fungsi untuk menghapus todo
@@ -45,22 +59,6 @@ class HomePage extends React.Component {
     this.setState({
       todos: getAllTodo(),
     });
-  }
-
-  // Fungsi untuk menyelesaikan todo
-  onTodoFinished(id, status) {
-    const targetTodo = getTodo(id);
-    if (targetTodo) {
-      editTodo({
-        id,
-        title: targetTodo.title,
-        description: targetTodo.description,
-        is_finished: status,
-      });
-      this.setState({
-        todos: getAllTodo(),
-      });
-    }
   }
 
   render() {
