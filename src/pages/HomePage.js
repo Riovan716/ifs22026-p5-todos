@@ -35,7 +35,10 @@ class HomePage extends React.Component {
       id,
       title: updatedFields.title || targetTodo.title, // Jika tidak ada perubahan, gunakan nilai sebelumnya
       description: updatedFields.description || targetTodo.description,
-      is_finished: updatedFields.is_finished !== undefined ? updatedFields.is_finished : targetTodo.is_finished,
+      is_finished:
+        updatedFields.is_finished !== undefined
+          ? updatedFields.is_finished
+          : targetTodo.is_finished,
     });
 
     this.setState({
