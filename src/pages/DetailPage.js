@@ -2,19 +2,15 @@ import { getTodo } from "../utils/data-todos";
 import { useParams } from "react-router-dom";
 import * as Icon from "react-feather";
 import { formatDate } from "../utils/tools";
-
 function DetailPage() {
   const params = useParams();
   const todo = getTodo(params.id);
-
-  // Mengatur status badge berdasarkan status is_finished
-  const badgeStatus = todo?.is_finished ? (
+  const badgeStatus = todo.is_finished ? (
     <span className="badge bg-success">Selesai</span>
   ) : (
     <span className="badge bg-warning">Proses</span>
   );
-
-  let resultRender;
+  let resultRender; //nfsdnerfhkf
   if (todo) {
     resultRender = (
       <div className="container-fluid">
@@ -26,6 +22,7 @@ function DetailPage() {
                   {todo.title} {badgeStatus}
                 </h3>
                 <hr />
+
                 <div>
                   {todo.is_finished ? (
                     <div>
@@ -51,16 +48,8 @@ function DetailPage() {
       </div>
     );
   } else {
-    resultRender = (
-      <div>
-        <p>Tidak ada catatan</p>
-        <a href="/" className="btn btn-primary">
-          Kembali ke halaman utama
-        </a>
-      </div>
-    );
+    resultRender = <p>Tidak ada catatan</p>;
   }
   return resultRender;
 }
-
 export default DetailPage;
