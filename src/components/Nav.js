@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import SearchInput from "./SearchInput";
 import PropTypes from "prop-types";
 function Nav({ keyword, keywordChange }) {
-  const location = useLocation();
+  const location = useLocation(); //bisk
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
