@@ -43,7 +43,7 @@ function TodoItem({ todo, onDelete, onTodoFinished, isDetail, onEditTitle }) {
 
   const handleSaveEdit = () => {
     if (newTitle.trim() === "" || newDescription.trim() === "") {
-      alert("Judul dan deskripsi tidak boleh kosong.");
+      alert("Judul dan deskripsi tidak b boleh kosong.");
       return;
     }
     onEditTitle(todo.id, newTitle, newDescription); // Mengirim ID dan nilai yang diedit
