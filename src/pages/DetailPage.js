@@ -10,7 +10,7 @@ function DetailPage() {
   ) : (
     <span className="badge bg-warning">Proses</span>
   );
-  let resultRender;
+  let resultRender; //nfsd
   if (todo) {
     resultRender = (
       <div className="container-fluid">
