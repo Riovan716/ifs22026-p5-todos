@@ -54,9 +54,7 @@ function DetailPage() {
     resultRender = (
       <div>
         <p>Tidak ada catatan</p>
-        <a href="/" className="btn btn-primary">
-          Kembali ke halaman utama
-        </a>
+        <a href="/" className="btn btn-primary">Kembali ke halaman utama</a>
       </div>
     );
   }
